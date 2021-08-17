@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RocketLanding.Domain
 {
-    public class LandingPlatform : ILanding
+    public class Rocket : ILanding
     {
         public LandingPoint LastCheckedInPoint { get; private set; }
         public Platform Platform { get; private set; }
-        public LandingPlatform(Platform platform)
+        public Rocket(Platform platform)
         {
             Platform = platform ?? new Platform(5, 5, 0, 10);
         }
@@ -23,19 +23,21 @@ namespace RocketLanding.Domain
             {
                 return LandingCheckStatus.out_of_platform;
             }
-            
-            LastCheckedInPoint = point;
+
             if (LastCheckedInPoint == null)
             {
+                LastCheckedInPoint = point;
                 return LandingCheckStatus.ok_for_landing;
             }
-            else if (!isNearBy(point, LastCheckedInPoint))
+            else if (isNearBy(point, LastCheckedInPoint))
             {
-                return LandingCheckStatus.ok_for_landing;
+                LastCheckedInPoint = point;
+                return LandingCheckStatus.clash;
             }
             else
             {
-                return LandingCheckStatus.clash;
+                LastCheckedInPoint = point;
+                return LandingCheckStatus.ok_for_landing;
             }
         }
 
@@ -43,7 +45,6 @@ namespace RocketLanding.Domain
         {
             return ((Math.Abs(point1.X - point2.X) == 1) || (Math.Abs(point1.Y - point2.Y) == 1));
         }
-
 
     }
 }

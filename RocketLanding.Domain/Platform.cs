@@ -29,14 +29,14 @@ namespace RocketLanding.Domain
             Height = height;
 
 
-            if (!IsPlatformWihtinLandingArea(new LandingPoint(x, y))) throw new ArgumentException("Platform overlaps the landing area");
+            if (!IsPlatformWihtinLandingArea(new LandingPoint(x,y))) throw new ArgumentException("Platform overlaps the landing area");
 
-
+           
         }
 
-        public bool IsPlatformWihtinLandingArea(LandingPoint point) => (this.X + this.Width <= LANDINGAREA_MAX_X && this.Y + this.Height <= LANDINGAREA_MAX_Y);
+        public bool IsPlatformWihtinLandingArea(LandingPoint point) => (X + Width <= LANDINGAREA_MAX_X && Y + Height <= LANDINGAREA_MAX_Y);
 
-
+        
 
     }
 }
