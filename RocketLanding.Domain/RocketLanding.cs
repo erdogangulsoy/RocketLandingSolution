@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace RocketLanding.Domain
 {
-    public class Rocket : ILanding
+    public class RocketLanding : ILanding
     {
         public LandingPoint LastCheckedInPoint { get; private set; }
         public Platform Platform { get; private set; }
-        public Rocket(Platform platform)
+        public RocketLanding(Platform platform)
         {
-            Platform = platform ?? new Platform(5, 5, 0, 10);
+            Platform = platform ?? new Platform(5, 5, 10, 10);
+        }
+
+        public RocketLanding() : this(null)
+        {
+
         }
 
         public LandingCheckStatus Land(LandingPoint point)

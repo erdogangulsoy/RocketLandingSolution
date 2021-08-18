@@ -16,7 +16,7 @@ namespace RocketLanding.Domain
         public uint Width { get; set; }
         public uint Height { get; set; }
 
-        public Platform(uint x, uint y, uint width, uint height)
+        public Platform(uint x=5, uint y=5, uint width=10, uint height=10)
         {
             if (x >= LANDINGAREA_MAX_X) throw new ArgumentException($"{nameof(X)} value is out of allowed range");
             if (y >= LANDINGAREA_MAX_Y) throw new ArgumentException($"{nameof(Y)} value is out of allowed range");
