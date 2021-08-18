@@ -15,10 +15,8 @@ namespace RocketLanding.Domain
             Platform = platform ?? new Platform(5, 5, 10, 10);
         }
 
-        public RocketLanding() : this(null)
-        {
-
-        }
+        public RocketLanding() : this(null) { }
+        
 
         public LandingCheckStatus Land(LandingPoint point)
         {
